@@ -1,0 +1,1454 @@
+app:
+  description: 我负责根据用户需求，对简历进行筛选打分或者生成相关的面试题。对使用有疑问，请MM联系魏俊宇
+  icon: grinning
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 网安面试官
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: langgenius/openai_api_compatible:0.0.13@3c545e99d84bd870a5bc673d66e206e8704f9b71c9e4eb83459bc75b8352d738
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:0.4.2@84fa9e08e0cf1c5b9c1951908abf6b98bc32ffe37ea06ab492b965960ef735b3
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: 候选者姓名
+    id: d79c1c10-74b4-4049-8dd4-adb90a69d605
+    name: name
+    selector:
+    - conversation
+    - name
+    value: ''
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: 9faa3a7b-6d16-43ed-a7ba-5541d86ad69b
+    name: Analysis_and_Summary
+    selector:
+    - env
+    - Analysis_and_Summary
+    value: 详细分析总结
+    value_type: string
+  - description: ''
+    id: 970334c0-d880-4d09-9ad2-7a99437cba35
+    name: Table_summary
+    selector:
+    - env
+    - Table_summary
+    value: 表格总结
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: '你可以上传候选人的简历和对应岗位要求，输入你想要我做的事情。
+
+      1. 我可以做简历筛选并打分，将候选人符合任职要求的详细情况输出到一个表格中供您对比参考。
+
+      2. 我可以根据您上传的简历，根据简历内容有针对性的出面试题
+
+      '
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 简历筛选
+    - 出题
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: iteration
+      id: 1745553247669-1-1745553293868-target
+      selected: false
+      source: '1745553247669'
+      sourceHandle: '1'
+      target: '1745553293868'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: iteration
+      id: 1745553247669-2-1745553301180-target
+      selected: false
+      source: '1745553247669'
+      sourceHandle: '2'
+      target: '1745553301180'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        sourceType: iteration-start
+        targetType: document-extractor
+      id: 1745553293868start-source-1745553347421-target
+      selected: false
+      source: 1745553293868start
+      sourceHandle: source
+      target: '1745553347421'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1745553293868start-source-1745553365092-target
+      selected: false
+      source: 1745553293868start
+      sourceHandle: source
+      target: '1745553365092'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        sourceType: document-extractor
+        targetType: llm
+      id: 1745553347421-source-1745553370428-target
+      selected: false
+      source: '1745553347421'
+      sourceHandle: source
+      target: '1745553370428'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        sourceType: llm
+        targetType: llm
+      id: 1745553365092-source-1745553370428-target
+      selected: false
+      source: '1745553365092'
+      sourceHandle: source
+      target: '1745553370428'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: llm
+      id: 1745553293868-source-1745553379244-target
+      selected: false
+      source: '1745553293868'
+      sourceHandle: source
+      target: '1745553379244'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1745553379244-source-1745553388828-target
+      selected: false
+      source: '1745553379244'
+      sourceHandle: source
+      target: '1745553388828'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1745549280159-source-1745553247669-target
+      selected: false
+      source: '1745549280159'
+      sourceHandle: source
+      target: '1745553247669'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: llm
+        targetType: tool
+      id: 1745553329627-source-1745561415606-target
+      selected: false
+      source: '1745553329627'
+      sourceHandle: source
+      target: '1745561415606'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: tool
+        targetType: answer
+      id: 1745561415606-source-1745553338867-target
+      selected: false
+      source: '1745561415606'
+      sourceHandle: source
+      target: '1745553338867'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: llm
+        targetType: assigner
+      id: 1745561546838-source-1745561625942-target
+      selected: false
+      source: '1745561546838'
+      sourceHandle: source
+      target: '1745561625942'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: document-extractor
+        targetType: llm
+      id: 1745553327379-source-1745561546838-target
+      selected: false
+      source: '1745553327379'
+      sourceHandle: source
+      target: '1745561546838'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: assigner
+        targetType: llm
+      id: 1745561625942-source-1745553329627-target
+      selected: false
+      source: '1745561625942'
+      sourceHandle: source
+      target: '1745553329627'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        sourceType: iteration-start
+        targetType: document-extractor
+      id: 1745553301180start-source-1745553327379-target
+      selected: false
+      source: 1745553301180start
+      sourceHandle: source
+      target: '1745553327379'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: llm
+      id: 1745553293868-source-1746501073467-target
+      selected: false
+      source: '1745553293868'
+      sourceHandle: source
+      target: '1746501073467'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1746501073467-source-1746501095643-target
+      selected: false
+      source: '1746501073467'
+      sourceHandle: source
+      target: '1746501095643'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1745553388828-source-1745553392796-target
+      source: '1745553388828'
+      sourceHandle: source
+      target: '1745553392796'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1746501095643-source-1745553392796-target
+      source: '1746501095643'
+      sourceHandle: source
+      target: '1745553392796'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: cv
+          max_length: 5
+          options: []
+          required: true
+          type: file-list
+          variable: cv
+        - label: jd
+          max_length: 600
+          options: []
+          required: true
+          type: paragraph
+          variable: jd
+      height: 116
+      id: '1745549280159'
+      position:
+        x: -295.99999999999943
+        y: 399
+      positionAbsolute:
+        x: -295.99999999999943
+        y: 399
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 简历筛选并打分/
+        - id: '2'
+          name: 根据简历针对性出题/
+        desc: ''
+        instruction: '```xml
+
+          <instruction>
+
+          你负责理解用户的意图，根据{{#sys.query#}}判断用户意图是简历筛选并打分，还是出题。若是出题或出面试题类似的意图，则仅输出“出题”，即分类2，否则你按原样输出分类1。以下是具体的步骤说明和示例：
+
+
+          <instructions>
+
+          1. 仔细阅读用户输入的内容，判断其意图。
+
+          2. 如果用户输入的内容明确提到“出题”、“面试题”、“考题”或类似关键词，或者其意图明显是请求生成题目，则输出“简历筛选并打分”。
+
+          3. 如果用户输入的内容与简历筛选、简历打分或类似意图相关，则输出“根据简历针对性出题”，不做任何修改。
+
+          4. 确保输出中不包含任何XML标签或其他标记，仅输出“出题”或用户原输入内容。
+
+          5. 如果无法明确判断用户意图，则默认按原样输出用户输入内容。
+
+          </instructions>
+
+
+          <examples>
+
+          <example>
+
+          输入：请帮我生成5道Java面试题。
+
+          输出：根据简历针对性出题
+
+          </example>
+
+
+          <example>
+
+          输入：这份简历的打分是多少？
+
+          输出：简历筛选并打分
+
+          </example>
+
+
+          <example>
+
+          输入：我需要一些Python编程练习题。
+
+          输出：根据简历针对性出题
+
+          </example>
+
+          </examples>
+
+
+          其他注意事项：
+
+          - 不要添加任何额外的解释或说明，仅输出“出题”或用户原输入内容。
+
+          - 保持输出简洁，避免冗余信息。
+
+          - 如果用户输入含糊不清，优先按原样输出。
+
+
+          请严格按照以上规则执行任务，确保输出结果准确且一致。
+
+          </instruction>
+
+          ```'
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        query_variable_selector:
+        - '1745549280159'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 172
+      id: '1745553247669'
+      position:
+        x: 334
+        y: 371
+      positionAbsolute:
+        x: 334
+        y: 371
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 342
+        is_parallel: true
+        iterator_selector:
+        - '1745549280159'
+        - cv
+        output_selector:
+        - '1745553370428'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1745553293868start
+        title: 迭代
+        type: iteration
+        width: 812
+      height: 342
+      id: '1745553293868'
+      position:
+        x: 1144.914544760261
+        y: 343.4312394800712
+      positionAbsolute:
+        x: 1144.914544760261
+        y: 343.4312394800712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 812
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1745553293868start
+      parentId: '1745553293868'
+      position:
+        x: 60
+        y: 147.5
+      positionAbsolute:
+        x: 1204.914544760261
+        y: 490.9312394800712
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 307
+        is_parallel: false
+        iterator_selector:
+        - '1745549280159'
+        - cv
+        output_selector:
+        - '1745553329627'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1745553301180start
+        title: 迭代 2
+        type: iteration
+        width: 2028
+      height: 307
+      id: '1745553301180'
+      position:
+        x: 1188.8996177587646
+        y: 753
+      positionAbsolute:
+        x: 1188.8996177587646
+        y: 753
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 2028
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1745553301180start
+      parentId: '1745553301180'
+      position:
+        x: 60
+        y: 98
+      positionAbsolute:
+        x: 1248.8996177587646
+        y: 851
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_array_file: false
+        iteration_id: '1745553301180'
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1745553301180'
+        - item
+      height: 92
+      id: '1745553327379'
+      parentId: '1745553301180'
+      position:
+        x: 204
+        y: 76
+      positionAbsolute:
+        x: 1392.8996177587646
+        y: 829
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        model:
+          completion_params:
+            max_tokens: 10000
+            temperature: 0.1
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: f0fec6a2-416b-4304-97ad-ad2fa73d2791
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            针对简历:”{{#1745553327379.text#}}“中的项目经历、工作或实习经历所涉及到的技能，生成一份面试题，主要考核候选人在项目或工作中用到的技术是否熟练。面试题需结合具体岗位要求：“{{#1745549280159.jd#}}”生成，确保问题具有针对性，能够深入考察候选人的技术能力和实际经验。以下是详细步骤：
+
+
+            1. **提取关键信息**：从简历中提取与技能、项目成果、技术栈相关的关键信息，重点关注候选人在项目中承担的角色、使用的技术、解决的问题以及取得的成果。
+
+            2. **结合岗位要求**：根据岗位描述（JD）中的职责和技术要求，筛选出与候选人经历最相关的部分，确保问题与岗位需求紧密相关。
+
+            3. **设计技术问题**：围绕候选人的技术栈和项目成果，设计开放式问题，重点考察其对技术的理解、优化能力以及实际应用经验。
+
+            4. **验证问题有效性**：确保问题能够真实反映候选人的技术水平，避免过于宽泛或脱离实际的问题。
+
+
+            输出时，首先先输出候选人姓名，请勿包含任何XML标签，仅提供清晰、简洁的面试问题。
+
+            </instruction>
+
+
+            <examples>
+
+            <example>
+
+            输入：
+
+            - 简历内容：负责电商平台的推荐系统优化，使用协同过滤和深度学习模型（如BERT）提升推荐准确率，使点击率提升20%，并成功应用于千万级用户规模的场景。
+
+            - 岗位要求：负责推荐算法的设计与优化，熟悉协同过滤和深度学习模型。
+
+
+            输出：
+
+            - 你在电商平台推荐系统中使用了协同过滤和BERT模型，能否详细说明你是如何结合这两种技术的？在提升点击率的过程中，BERT模型起到了哪些关键作用？
+
+            </example>
+
+
+            <example>
+
+            输入：
+
+            - 简历内容：主导开发分布式存储系统，采用Ceph和自定义的负载均衡算法，将系统吞吐量提升35%，并支持了日均10亿次请求的高并发场景。
+
+            - 岗位要求：熟悉分布式系统设计，有高并发场景优化经验。
+
+
+            输出：
+
+            - 你在分布式存储系统中使用了Ceph和自定义负载均衡算法，能否详细解释你的负载均衡算法设计思路？在高并发场景下，你是如何确保系统吞吐量提升的？
+
+            </example>
+
+
+
+            '
+        selected: false
+        title: 出题
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745553329627'
+      parentId: '1745553301180'
+      position:
+        x: 1116
+        y: 77
+      positionAbsolute:
+        x: 2304.8996177587646
+        y: 830
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        answer: 这是候选者：{{#conversation.name#}}的面试题{{#1745561415606.files#}}
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 124
+      id: '1745553338867'
+      parentId: '1745553301180'
+      position:
+        x: 1724
+        y: 60
+      positionAbsolute:
+        x: 2912.8996177587646
+        y: 813
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_array_file: false
+        iteration_id: '1745553293868'
+        selected: false
+        title: 文档提取器 2
+        type: document-extractor
+        variable_selector:
+        - '1745553293868'
+        - item
+      height: 92
+      id: '1745553347421'
+      parentId: '1745553293868'
+      position:
+        x: 204
+        y: 60
+      positionAbsolute:
+        x: 1348.914544760261
+        y: 403.4312394800712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        model:
+          completion_params:
+            max_tokens: 15301
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 030f1645-caad-4839-bca1-7c6e4265f43a
+          role: system
+          text: '你是一个招聘要求提炼专家，你能够将招聘要求："{{#1745549280159.jd#}}"提炼为几个具体的名词或者动词+名词结构，这里的名词可以是各种技能，证书，经验要求等，动词+名词结构可以是精通/熟悉/了解某种技能等。输出不要包含提炼后内容以外的其他东西。
+
+            示例：
+
+            -输入招聘要求：算法工程师
+
+            1、良好的数学功底，具有较强的数据建模能力、问题分析能力和学习能力，
+
+            2、精通Java开发、Scala、Python/R等语言，熟练掌握Spark ML/Python Sklearn/Tensorflow/Caffe等机器学习和深度学习框架中的一种或多种；
+
+            3、熟练掌握深度学习和神经网络基本原理，具备相关模型构建、训练、调优的实践经验。比如，异常检测、文本分析和挖掘、自然语言处理、文本理解、分类、模式识别等。
+
+            4、熟练掌握互联网或工业制造领域各类算法问题和解决方案，有人工智能落地到实际业务者优先；
+
+            5、良好的沟通能力、创新意识和团队合作精神；
+
+             
+
+            -输出：
+
+            1.良好数学功底
+
+            2.较强数据建模能力
+
+            3.较强问题分析能力
+
+            4.较强学习能力
+
+            5.精通Java开发
+
+            6.精通Scala语言
+
+            7.精通Python/R语言
+
+            8.熟练掌握Spark ML框架
+
+            9.熟练掌握Python Sklearn框架
+
+            10.熟练掌握Tensorflow框架
+
+            11.熟练掌握Caffe框架
+
+            12.掌握深度学习基本原理
+
+            13.掌握神经网络基本原理
+
+            14.具备模型构建经验
+
+            15.具备模型训练经验
+
+            16.具备模型调优经验
+
+            17.掌握异常检测
+
+            18.掌握文本分析和挖掘
+
+            19.掌握自然语言处理
+
+            20.掌握文本理解
+
+            21.掌握分类
+
+            22.掌握模式识别
+
+            23.掌握互联网领域算法问题及解决方案
+
+            24.掌握工业制造领域算法问题及解决方案
+
+            25.有人工智能落地实际业务经验
+
+            26.良好沟通能力
+
+            27.创新意识
+
+            28.团队合作精神'
+        selected: false
+        title: 要求精炼
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745553365092'
+      parentId: '1745553293868'
+      position:
+        x: 204
+        y: 192
+      positionAbsolute:
+        x: 1348.914544760261
+        y: 535.4312394800712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553293868'
+        model:
+          completion_params:
+            max_tokens: 58501
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: cb0cff8e-06b0-4537-965b-b34319b6cd50
+          role: system
+          text: '你是一个招聘专家，你根据简历："{{#1745553347421.text#}}"的内容，结合部门岗位要求：“{{#1745553365092.text#}}”进行打分，打分分为硬性条件打分，技术匹配度打分
+
+            ###硬性条件打分
+
+            *总分：100分
+
+            *工作断层：工作有1-3个月断层扣5分
+
+            *工作地点与部门要求不一致扣25分
+
+            *学历分，学历低于部门要求的扣25分，高于部门要求，每高一个级别增加5分
+
+            *薪资匹配度，薪资和部门要求有上浮，下浮10%的扣5分，每增加幅度5%扣5分，如果是员工简历低于部门要求幅度情况不扣分。
+
+            *培训经历，有培训经历加5分
+
+            *证书，有证书加5分
+
+            *往期单个公司任职时间，某一段履历低于6个月的扣10分。
+
+            ###技术匹配度打分
+
+            *总分:100分
+
+            *任职要求，简历中和任职要求匹配度，每有一项不匹配扣5分，匹配不加分。
+
+            *其他方面不做扣分
+
+            输出要求：只输出 顺序后的：员工姓名，手机，毕业院校，学历，邮箱，硬性条件打分，技术匹配度打分，每一项任职要求作为表头输出到一个表格格式进行输出。表格输出在前，分析过程输出在后。
+
+
+            - 表格输出要求：其中符合对应项任职要求的，在表格内打✔，不符合的打✖。
+
+            示例：良好数学功底为表头，✔为表格内容，精通Java开发为表头，✖为表格内容，精通Python/R语言为表头，✔为表格内容。严格按照一个表格形式输出，不要有其他内容。
+
+            | 员工姓名 | 手机         | 毕业院校   | 学历 | 邮箱                | 硬性条件打分 | 技术匹配度打分
+            | 本科或硕士学历 | 计算机相关专业 | 数学相关专业 | 人工智能相关专业 | 统计学相关专业 | 1年以上算法工作经验 |
+
+            |----------|--------------|------------|------|---------------------|--------------|----------------|----------------|----------------|----------------|------------------|----------------|-----------------------|
+
+            | 魏神     | 123456789    | 清华大学   | 硕士 | 123456789@qq.com    | 100          |
+            95             | ✔              | ✔              | ✔              | ✔                |
+            ✔              | ✔                   |
+
+            - 分析过程输出要求：
+
+            示例：
+
+            陈景行简历分析
+
+            分析过程
+
+            硬性条件打分
+
+            · 工作断层：简历中无断层记录，不扣分。
+
+            · 工作地点：成都市青羊区，与部门要求未明确冲突，不扣分。
+
+            · 学历：博士（高于专科要求），加5分。
+
+            · 薪资匹配度：未提供具体薪资信息，假设匹配，不扣分。
+
+            · 培训经历：无明确培训经历，不扣分不加分。
+
+            · 证书：无明确证书记录，不加分。
+
+            · 往期任职时间：所有履历均超过6个月，不扣分。
+
+            · 总分：100分。
+
+            部门打分
+
+            1. 计算机科学专科及以上学历- ✔
+
+            2. 电子工程专科及以上学历- ✖扣5分
+
+            3. 数学专科及以上学历- ✖扣5分
+
+            4. 相关领域专科及以上学历- ✔
+
+            5. 精通C#编程语言- ✖扣5分
+
+            6. 有3年以上C#软件开发经验- ✖扣5分
+
+            7. 深入理解OpenCV库- ✔
+
+            8. 熟悉OpenCV API - ✔
+
+            9. 有OpenCV实际项目应用经验- ✔
+
+            10. 熟悉图像处理基本理论- ✔
+
+            11. 熟悉滤波算法- ✔
+
+            12. 熟悉边缘检测算法- ✔
+
+            13. 熟悉形态学操作算法- ✔
+
+            14. 掌握计算机视觉技术- ✔
+
+            15. 掌握目标检测技术- ✔
+
+            16. 掌握图像分割技术- ✔
+
+            17. 掌握图像识别技术- ✔
+
+            18. 掌握光流法技术- ✖扣5分
+
+            19. 具备良好问题解决能力- ✔
+
+            20. 具备创新思维- ✔
+
+            21. 能够独立分析技术问题- ✔
+
+            22. 能够独立解决复杂技术问题- ✔
+
+            23. 具备强烈责任心- ✔
+
+            注：实际打分中，"光流法技术"未在简历中体现，可能扣5分，其他未明确技术也可能扣分，因此最终部门打分为55分。
+
+
+            '
+        selected: false
+        title: 打分专家
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745553370428'
+      parentId: '1745553293868'
+      position:
+        x: 508
+        y: 61
+      positionAbsolute:
+        x: 1652.914544760261
+        y: 404.4312394800712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 89c507b5-1a42-49b3-a65a-6b73595f3190
+          role: system
+          text: '把每份简历打分的表格："{{#1745553293868.output#}}" 合并为一个总的表格进行输出，注意不要丢失原来表格的内容，表格要严格符合markdown格式，不要输出表格信息以外的其他内容，不要输出markdown。
+
+            示例：
+
+            | 员工姓名 | 手机         | 毕业院校   | 学历 | 邮箱                | 硬性条件打分 | 技术匹配度打分
+            | 本科或硕士学历 | 计算机相关专业 | 数学相关专业 | 人工智能相关专业 | 统计学相关专业 | 1年以上算法工作经验 |
+
+            |----------|--------------|------------|------|---------------------|--------------|----------------|----------------|----------------|----------------|------------------|----------------|-----------------------|
+
+            | 魏神     | 123456789    | 清华大学   | 硕士 | 123456789@qq.com    | 100          |
+            95             | ✔              | ✔              | ✔              | ✔                |
+            ✔              | ✔                   |
+
+            | 陈景行   | 13812341234  | 清华大学   | 博士 | chenjingxing@example.com | 100          |
+            100            | ✔              | ✔              | ✖              | ✔                |
+            ✖              | ✔                   |
+
+            | 林宇轩   | 136-1234-5678 | XX 大学    | 硕士 | linyuxuan@email.com  | 100          |
+            100            | ✔              | ✔              | ✖              | ✔                |
+            ✖              | ✔                   |
+
+            | 苏晴     | 158-8765-4321 | 浙江大学   | 硕士 | suqing@example.com   | 100          |
+            95             | ✔              | ✔              | ✖              | ✔                |
+            ✖              | ✔                   |'
+        selected: false
+        title: 表格总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745553379244'
+      position:
+        x: 2223.1521123925154
+        y: 329.5024304673333
+      positionAbsolute:
+        x: 2223.1521123925154
+        y: 329.5024304673333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown格式文本，必须为Markdown表格格式，可包含多个表格
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转XLSX文件
+        tool_configurations: {}
+        tool_label: Markdown转XLSX文件
+        tool_name: md_to_xlsx
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1745553379244.text#}}'
+        type: tool
+      height: 54
+      id: '1745553388828'
+      position:
+        x: 2588.0000000000005
+        y: 343.4312394800712
+      positionAbsolute:
+        x: 2588.0000000000005
+        y: 343.4312394800712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 这是打分后的excel表格和详细的打分流程word，内容包含了候选人姓名，电话，邮箱，符合任职要求的情况等{{#1746501095643.files#}}{{#1745553388828.files#}}
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 172
+      id: '1745553392796'
+      position:
+        x: 3351.261728817732
+        y: 371
+      positionAbsolute:
+        x: 3351.261728817732
+        y: 371
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1745553301180'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转Docx文件
+        tool_configurations: {}
+        tool_label: Markdown转Docx文件
+        tool_name: md_to_docx
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1745553329627.text#}}'
+        type: tool
+      height: 54
+      id: '1745561415606'
+      parentId: '1745553301180'
+      position:
+        x: 1420
+        y: 95
+      positionAbsolute:
+        x: 2608.8996177587646
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745553301180'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: b1d0c8a7-5446-4f73-8bc5-a81302cab8c4
+          role: system
+          text: 根据简历中的信息{{#1745553327379.text#}}把候选者的姓名提取出来，只包含姓名，不包含其他信息
+        selected: false
+        title: 读出姓名
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745561546838'
+      parentId: '1745553301180'
+      position:
+        x: 508
+        y: 77
+      positionAbsolute:
+        x: 1696.8996177587646
+        y: 830
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745561546838'
+          - text
+          variable_selector:
+          - conversation
+          - name
+          write_mode: over-write
+        iteration_id: '1745553301180'
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745561625942'
+      parentId: '1745553301180'
+      position:
+        x: 812
+        y: 78
+      positionAbsolute:
+        x: 2000.8996177587646
+        y: 831
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            max_tokens: 70401
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: c565a098-96f2-4ddf-adb5-43cd4391635f
+          role: system
+          text: '把每份简历打分的分析过程："{{#1745553293868.output#}}" 合并为一个总的文档进行输出，注意不要丢失原来分析过程的内容，分析过程要严格符合markdown格式，不要输出分析过程以外的其他内容，不要输出markdown。
+
+            示例：
+
+            陈景行简历分析
+
+            分析过程
+
+            硬性条件打分
+
+            · 工作断层：简历中无断层记录，不扣分。
+
+            · 工作地点：成都市青羊区，与部门要求未明确冲突，不扣分。
+
+            · 学历：博士（高于专科要求），加5分。
+
+            · 薪资匹配度：未提供具体薪资信息，假设匹配，不扣分。
+
+            · 培训经历：无明确培训经历，不扣分不加分。
+
+            · 证书：无明确证书记录，不加分。
+
+            · 往期任职时间：所有履历均超过6个月，不扣分。
+
+            · 总分：100分。
+
+            部门打分
+
+            1. 计算机科学专科及以上学历- ✔
+
+            2. 电子工程专科及以上学历- ✖扣5分
+
+            3. 数学专科及以上学历- ✖扣5分
+
+            4. 相关领域专科及以上学历- ✔
+
+            5. 精通C#编程语言- ✖扣5分
+
+            6. 有3年以上C#软件开发经验- ✖扣5分
+
+            7. 深入理解OpenCV库- ✔
+
+            魏神简历分析
+
+            分析过程
+
+            '
+        selected: false
+        title: 分析总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1746501073467'
+      position:
+        x: 2272.111555718613
+        y: 528.3958618787256
+      positionAbsolute:
+        x: 2272.111555718613
+        y: 528.3958618787256
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown转Docx文件
+        tool_configurations: {}
+        tool_label: Markdown转Docx文件
+        tool_name: md_to_docx
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1746501073467.text#}}'
+        type: tool
+      height: 54
+      id: '1746501095643'
+      position:
+        x: 2596.2077602496097
+        y: 545.3958618787254
+      positionAbsolute:
+        x: 2596.2077602496097
+        y: 545.3958618787254
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -849.5139645145805
+      y: 76.79328919886763
+      zoom: 0.574349177498519

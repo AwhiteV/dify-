@@ -1,0 +1,612 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 网络安全专家
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: langgenius/openai_api_compatible:0.0.13@3c545e99d84bd870a5bc673d66e206e8704f9b71c9e4eb83459bc75b8352d738
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: 我是你的网络安全顾问，专注于为企业设计定制化的网络安全策略。如果你需要我帮你阅读文件，你可以拖动文件到我的聊天窗口。我可以根据问题自动选择是否思考，您也可以强制输入：/思考
+      or /不思考 ，选择让我思考或不思考
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 写一个标准的等保三级方案
+    - 写一个标准的等保三级方案，/不思考
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1746670022112-source-1746670198043-target
+      source: '1746670022112'
+      sourceHandle: source
+      target: '1746670198043'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: llm-source-answer-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1750043347772-true-1750043376124-target
+      selected: false
+      source: '1750043347772'
+      sourceHandle: 'true'
+      target: '1750043376124'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1750043376124-source-1750043393579-target
+      selected: false
+      source: '1750043376124'
+      sourceHandle: source
+      target: '1750043393579'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1750043313636-source-1750043417644-target
+      source: '1750043313636'
+      sourceHandle: source
+      target: '1750043417644'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: if-else
+      id: 1750043417644-source-1750043347772-target
+      source: '1750043417644'
+      sourceHandle: source
+      target: '1750043347772'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1750043347772-3ed50fdd-a4e8-4f4f-a85b-c3175663279a-llm-target
+      selected: false
+      source: '1750043347772'
+      sourceHandle: 3ed50fdd-a4e8-4f4f-a85b-c3175663279a
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1750043347772-false-1750044695973-target
+      selected: false
+      source: '1750043347772'
+      sourceHandle: 'false'
+      target: '1750044695973'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1750044695973-source-1750044722900-target
+      selected: false
+      source: '1750044695973'
+      sourceHandle: source
+      target: '1750044722900'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: parameter-extractor
+      id: 1746670198043-source-1750150688571-target
+      source: '1746670198043'
+      sourceHandle: source
+      target: '1750150688571'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: llm
+      id: 1750150688571-source-1750043313636-target
+      source: '1750150688571'
+      sourceHandle: source
+      target: '1750043313636'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1746670022112'
+      position:
+        x: -65
+        y: 282
+      positionAbsolute:
+        x: -65
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746670198043'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 41
+        model:
+          completion_params:
+            max_tokens: 102701
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 792388da-2265-489d-83b9-07e0a50b334e
+          role: system
+          text: I want you to act as a cyber security specialist. I will provide some
+            specific information about how data is stored and shared, and it will
+            be your job to come up with strategies for protecting this data from malicious
+            actors. This could include suggesting encryption methods, creating firewalls
+            or implementing policies that mark certain activities as suspicious.要求内容丰富详细，图文并茂，如果用户上传了文件，请结合{{#context#}}回答
+        selected: false
+        title: 不思考
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: llm
+      position:
+        x: 1233.99785687289
+        y: 590.5004062493786
+      positionAbsolute:
+        x: 1233.99785687289
+        y: 590.5004062493786
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 105
+      id: answer
+      position:
+        x: 1518.0816260269485
+        y: 563.2175080521914
+      positionAbsolute:
+        x: 1518.0816260269485
+        y: 563.2175080521914
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_array_file: true
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - sys
+        - files
+      height: 92
+      id: '1746670198043'
+      position:
+        x: -5.992526023236394
+        y: 388.2766029854132
+      positionAbsolute:
+        x: -5.992526023236394
+        y: 388.2766029854132
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: e9b074c5-504e-49ed-aa9b-b616dd1fe830
+          role: system
+          text: "You are a specialized AI model acting as a Request Difficulty Assessor.\n\
+            \  \nYour SOLE and ONLY task is to evaluate the inherent difficulty of\
+            \ a user's request that is intended for another AI.\nYou will receive\
+            \ a user's request message.\nYour objective is to determine if this request\
+            \ requires careful, deliberate thought from the downstream AI, or if it's\
+            \ straightforward.\n\nCriteria for your decision:\n1. If the user's request\
+            \ is complex, nuanced, requires multi-step reasoning, creative generation,\
+            \ in-depth analysis,\n   or careful consideration by the AI to produce\
+            \ a high-quality response, you MUST respond with: 'hard'\n2. If the user's\
+            \ request is simple, factual, straightforward, or can likely be answered\
+            \ quickly and directly by the AI with minimal processing or deliberation,\n\
+            \   you MUST respond with: 'easy'\n\nIMPORTANT:\n- Your response MUST\
+            \ BE EXACTLY one of the two commands: 'hard' or 'easy'.\n- Your response\
+            \ must start with either 'hard' or 'easy'.\n- DO NOT add any other text,\
+            \ explanations, or pleasantries.\n- Your assessment is about the processing\
+            \ difficulty for the *AI that will ultimately handle the user's request."
+        - id: 9cce39c3-cd00-44ca-96f0-c12ef1769cb4
+          role: user
+          text: '{{#1750150688571.query#}}'
+        selected: false
+        title: 判断任务难度
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1750043313636'
+      position:
+        x: 179.26352432384533
+        y: 684.2434734355718
+      positionAbsolute:
+        x: 179.26352432384533
+        y: 684.2434734355718
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 7dbb80a4-a232-4c5c-acd1-42ee0579d3bc
+            value: hard
+            varType: string
+            variable_selector:
+            - '1750043313636'
+            - text
+          - comparison_operator: contains
+            id: 925e0d4e-8260-4b5c-91de-0d70347a41cb
+            value: /思考
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: or
+        - case_id: 3ed50fdd-a4e8-4f4f-a85b-c3175663279a
+          conditions:
+          - comparison_operator: contains
+            id: 59d70c63-1624-4b31-bf6e-70e5d98f7ff0
+            value: /不思考
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: contains
+            id: 8ac24f5f-ef6a-438e-95ee-91992b442d80
+            value: easy
+            varType: string
+            variable_selector:
+            - '1750043313636'
+            - text
+          id: 3ed50fdd-a4e8-4f4f-a85b-c3175663279a
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 226
+      id: '1750043347772'
+      position:
+        x: 892.7493055719265
+        y: 379.95783731879175
+      positionAbsolute:
+        x: 892.7493055719265
+        y: 379.95783731879175
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746670198043'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.6
+          mode: chat
+          name: qwen3:32b
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: ecb2e871-d397-4346-88a1-153c1ea12d69
+          role: system
+          text: I want you to act as a cyber security specialist. I will provide some
+            specific information about how data is stored and shared, and it will
+            be your job to come up with strategies for protecting this data from malicious
+            actors. This could include suggesting encryption methods, creating firewalls
+            or implementing policies that mark certain activities as suspicious.要求内容丰富详细，图文并茂，如架构图等图表展示，如果用户上传了文件，请结合{{#context#}}回答
+        selected: false
+        title: 思考
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1750043376124'
+      position:
+        x: 1258.2493219370563
+        y: 428.07705255243445
+      positionAbsolute:
+        x: 1258.2493219370563
+        y: 428.07705255243445
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1750043376124.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 105
+      id: '1750043393579'
+      position:
+        x: 1584.835130307468
+        y: 412.88001416696113
+      positionAbsolute:
+        x: 1584.835130307468
+        y: 412.88001416696113
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '正在通过DeepseekV3评估任务难度：{{#1750043313636.text#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 121
+      id: '1750043417644'
+      position:
+        x: 480.7482942163648
+        y: 513.0001937295185
+      positionAbsolute:
+        x: 480.7482942163648
+        y: 513.0001937295185
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746670198043'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 61952273-3432-4914-a72d-4a56e3b756a2
+          role: system
+          text: I want you to act as a cyber security specialist. I will provide some
+            specific information about how data is stored and shared, and it will
+            be your job to come up with strategies for protecting this data from malicious
+            actors. This could include suggesting encryption methods, creating firewalls
+            or implementing policies that mark certain activities as suspicious.要求内容丰富详细，图文并茂，如果用户上传了文件，请结合{{#context#}}回答
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1750044695973'
+      position:
+        x: 1135.305085784059
+        y: 722.5513909446065
+      positionAbsolute:
+        x: 1135.305085784059
+        y: 722.5513909446065
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1750044695973.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 105
+      id: '1750044722900'
+      position:
+        x: 1462.2120285473704
+        y: 727.5467147444227
+      positionAbsolute:
+        x: 1462.2120285473704
+        y: 727.5467147444227
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取出问题{{#sys.query#}}的主题，不要含有“/思考","不思考"类似字样
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v3-0324
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        parameters:
+        - description: 问题的主题，不要含有“/思考","不思考"类似字样
+          name: query
+          required: true
+          type: string
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1750150688571'
+      position:
+        x: 53.92267466740486
+        y: 536.8168265034319
+      positionAbsolute:
+        x: 53.92267466740486
+        y: 536.8168265034319
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 179.0258163909367
+      y: 20.266965414861033
+      zoom: 0.7578582832551989
