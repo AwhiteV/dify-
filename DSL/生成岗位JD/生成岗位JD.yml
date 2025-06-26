@@ -1,0 +1,234 @@
+app:
+  description: 根据你要招什么工程师，按照固定格式生成JD
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 生成岗位JD
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: langgenius/ollama:0.0.5@cc38c90a58d4b4e43c9a821d352829b2c2a8d6d742de9fec9e61e6b34865b496
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: be4f3db7-ca25-4136-b65e-821aac73af78
+    name: muban
+    selector:
+    - env
+    - muban
+    value: JD模板： 一、工作地点​ [具体城市 / 区域，如：北京朝阳区 / 全国出差]​ 二、职位类型​ [全职 / 兼职 / 实习 / 远程办公]​
+      三、薪资范围​ [XX - XX 元 / 月，如：8000 - 15000 元 / 月]​ 四、职位描述​ [简要概述岗位核心定位，让求职者快速了解工作性质与价值，例如：负责公司
+      [业务领域] 相关工作，推动业务发展，与团队协作完成目标，为公司战略落地提供支持。]​ 五、主要职责​ [职责 1，如：负责产品的市场调研与需求分析，输出调研报告，为产品规划提供依据。]​
+      [职责 2，如：制定并执行市场营销策略，通过线上线下渠道推广公司产品，提升品牌知名度。]​ [职责 3，如：管理客户关系，及时响应客户需求，解决客户问题，提高客户满意度与忠诚度。]​
+      [职责 4，如：与研发、设计等部门协作，跟进项目进度，确保项目按时、高质量完成。]​ [其他职责，根据实际情况补充。] 六、任职要求 教育背景：[本科/硕士/博士]
+      技能要求：[xxxx] 工作经验：[xxxx]
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 500
+        batch_count_limit: 50
+        file_size_limit: 1500
+        image_file_size_limit: 1000
+        video_file_size_limit: 10000
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1745807148643-source-1745807227585-target
+      source: '1745807148643'
+      sourceHandle: source
+      target: '1745807227585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1745807227585-source-1745808434338-target
+      source: '1745807227585'
+      sourceHandle: source
+      target: '1745808434338'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: 开始
+        type: start
+        variables:
+        - label: 输入需要招聘的工程师类型、薪资、工作地点以及其他要求，AI会按照模板生成
+          max_length: 999
+          options: []
+          required: true
+          type: paragraph
+          variable: requirement
+      height: 89
+      id: '1745807148643'
+      position:
+        x: 73
+        y: 282
+      positionAbsolute:
+        x: 73
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3:32b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 94c5d7d1-a50f-4de8-9b94-d406ef4d5376
+          role: system
+          text: '你是一个资深的HR，负责公司的招聘业务，你的任务是根据用户要求{{#1745807148643.requirement#}}和JD模板{{#env.muban#}}编写岗位的JD
+
+            示例：
+
+            输入：我要招一个全职新媒体运营专员​，工作地点上海浦东新区，薪资范围6k到10k一个月
+
+            输出：
+
+            新媒体运营专员​
+
+            一、工作地点​
+
+            上海浦东新区​
+
+            二、职位类型​
+
+            全职​
+
+            三、薪资范围​
+
+            6000 - 10000 元 / 月​
+
+            四、职位描述​
+
+            负责公司新媒体平台运营工作，通过内容策划与创意输出，提升品牌在社交媒体上的影响力与用户活跃度，吸引潜在客户，助力公司业务增长。​
+
+            五、主要职责​
+
+            负责微信公众号、微博、抖音等新媒体平台的日常运营及维护，包括内容撰写、排版发布、粉丝互动等工作。​
+
+            结合热点与公司业务，制定新媒体内容策划方案，策划并执行短视频、图文等创意内容，提高账号曝光量与粉丝转化率。​
+
+            分析新媒体平台数据，定期输出运营报告，根据数据反馈优化运营策略，提升运营效果。​
+
+            与市场、设计等部门协作，参与线上线下营销活动的新媒体宣传推广，扩大活动影响力。​
+
+            关注行业动态及竞品新媒体运营情况，提出创新运营思路与建议，保持公司新媒体账号竞争力。​
+
+            六、任职要求​
+
+            教育背景：新闻传播学、广告学、市场营销等相关专业专科及以上学历；若有丰富运营经验，专业可适当放宽。​
+
+            技能要求：熟练掌握微信公众号排版工具、图片处理软件（如 PS 基础操作）、视频剪辑软件（如剪映、PR）；具备良好的文案撰写能力，文字风格多样，可适应不同平台调性。​
+
+            工作经验：1 年以上新媒体运营经验，熟悉微信、微博、抖音等主流平台运营规则及玩法，有成功运营案例者优先。​
+
+            个人特质：对热点事件敏感度高，具备较强的创意策划能力和数据分析能力；工作责任心强，有良好的沟通协作能力和团队意识，能够适应快节奏工作环境。
+
+
+            输出注意事项：输出时，如果用户没有提到这部分，则按照模板中的这部分输出'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1745807227585'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1745807227585'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1745808434338'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 58.52583792787664
+      y: 13.693761983243803
+      zoom: 0.8815912574041377
