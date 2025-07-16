@@ -1,0 +1,295 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 生成简历评分标准
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.16@d41b09aca46cdd3876f70b4c91d464c4588fc0bdc844ced6ee426283ead6ce8e
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1752030230513-source-1752030336939-target
+      source: '1752030230513'
+      sourceHandle: source
+      target: '1752030336939'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1752030336939-source-1752042151382-target
+      source: '1752030336939'
+      sourceHandle: source
+      target: '1752042151382'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1752042151382-source-1752030801753-target
+      source: '1752042151382'
+      sourceHandle: source
+      target: '1752030801753'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: JD
+          max_length: 4000
+          options: []
+          required: true
+          type: paragraph
+          variable: JD
+      height: 89
+      id: '1752030230513'
+      position:
+        x: 6.003202119829439
+        y: 273.2944943670388
+      positionAbsolute:
+        x: 6.003202119829439
+        y: 273.2944943670388
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: ernie-4.5-turbo-128k
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 4b74e27d-141a-412c-876f-8f77af78fa80
+          role: system
+          text: '你负责使用<招聘JD>:{{#1752030230513.JD#}}生成对应的<简历评价方法>
+
+            输出要求严格使用Markdown表格格式
+
+
+            示例输入：
+
+            <招聘JD>
+
+            岗位名称":"研发工程师-电力电子软件（DSP算法）";"岗位JD":"工作职责：
+
+            1、独立完成车储共用变流器的DSP软件开发；
+
+            2、完成车储共用变流器的对内、对外通讯协议开发；
+
+            3、指导工程师完成车储共用变流器的软件相关测试；
+
+            4、支持车储共用变流器在公司其他产品（换电站、电池阶段利用等）上应用时软件相关工作；
+
+            5、负责产品后续改进、维护、非标设计等工作；
+
+            6、软件设计、开发文档的编写和维护，参与设计规范的制定；
+
+            任职资格：
+
+            1、有储能PCS或光伏逆变器或UPS的DSP软件开发经验，本科（5年及以上开发经验）硕士（3年及以上开发经验）。自动化、电气工程或者电力电子等专业；
+
+            2、熟悉PCS（逆变器）的DSP软件开发；
+
+            3、熟悉PCS（逆变器）的算法（并网、离网及离网并机)开发，熟悉mppt算法；
+
+            4、熟练储能/光伏的常见并网标准，PCS的硬件价格与拓扑；熟悉软件工程的基本概念；
+
+            5、具备良好的分析问题、解决问题能力，能独立承担任务；
+
+            6、责任心强，具有良好的沟通和团队协作能力，主动好学；"
+
+
+            示例输出：
+
+            <DSP工程师简历评价方法>
+
+            | 评估大项 | 评估子项 | 满分 | 备注 |
+
+            | --- | --- | --- | --- |
+
+            | 1. 教育背景 | 专业匹配 | 3 | 自动化/电气工程/电力电子 |
+
+            | 1. 教育背景 | 学历及年限符合 | 2 | 本科 5 年/硕士 3 年 |
+
+            | 2. 工作经验 | 行业经验（储能/PCS/逆变器） | 15 | 3 年+（15 分），1 - 3 年（10 分） |
+
+            | 2. 工作经验 | 年限匹配 | 5 | 本科 5 年/硕士 3 年（5 分） |
+
+            | 3. 技术能力 | DSP 软件开发 | 10 | 独立开发（10 分） |
+
+            | 3. 技术能力 | 通讯协议开发 | 5 | CAN/Modbus 等协议（5 分） |
+
+            | 3. 技术能力 | 算法能力（并网/离网/MPPT） | 10 | 需描述应用场景 |
+
+            | 3. 技术能力 | 标准与硬件熟悉度 | 5 | 并网标准+拓扑（5 分） |
+
+            | 4. 项目经验 | 主导项目经验 | 8 | 完整项目主导（8 分） |
+
+            | 4. 项目经验 | 项目复杂度 | 6 | 高复杂度（多模块协同） |
+
+            | 4. 项目经验 | 跨产品应用经验 | 6 | 换电站/梯次利用（6 分） |
+
+            | 5. 问题解决能力 | 复杂问题解决案例 | 10 | 独立解决（10 分） |
+
+            | 6. 沟通与协作 | 团队协作能力 | 10 | 跨团队主导（10 分） |
+
+            | 7. 文档能力 | 文档编写经验 | 5 | 完整设计文档（5 分） |'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752030336939'
+      position:
+        x: 370.81229211385437
+        y: 282
+      positionAbsolute:
+        x: 370.81229211385437
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1752042151382'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1752030801753'
+      position:
+        x: 1099.171573228496
+        y: 289.83495506966517
+      positionAbsolute:
+        x: 1099.171573228496
+        y: 289.83495506966517
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            enable_thinking: true
+            temperature: 0
+          mode: chat
+          name: ernie-4.5-turbo-128k
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 0e217771-904b-484a-9239-e5086096ec9e
+          role: system
+          text: '你需要检查{{#1752030336939.text#}}输出的表格，满分那一列加起来是否为100分，若不是100分，请根据原来的分数比例进行调整，分数要求是整数，最后重新输出表格，若是100分，则原样输出。
+
+
+            输出要求：只需要输出<xxx工程师简历评价方法>和修改后的表格或原始表格，不需要输出修改过程，如“（约等于2.97，取整为3）”的内容'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752042151382'
+      position:
+        x: 799.171573228496
+        y: 289.83495506966517
+      positionAbsolute:
+        x: 799.171573228496
+        y: 289.83495506966517
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -76.0960629053717
+      y: 30.621484918699252
+      zoom: 0.7578582832551995
