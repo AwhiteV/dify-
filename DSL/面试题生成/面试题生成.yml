@@ -1,0 +1,386 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 面试题生成
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: langgenius/tongyi:0.0.22@fe077b279c176f6534fd764f444388a625871f92ff71db76479e2513b5aa9487
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.16@d41b09aca46cdd3876f70b4c91d464c4588fc0bdc844ced6ee426283ead6ce8e
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1752246201417-source-1752246268957-target
+      source: '1752246201417'
+      sourceHandle: source
+      target: '1752246268957'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1752246268957-source-1752246275542-target
+      source: '1752246268957'
+      sourceHandle: source
+      target: '1752246275542'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: document-extractor
+      id: 1752246241137-source-1752246201417-target
+      source: '1752246241137'
+      sourceHandle: source
+      target: '1752246201417'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1752246275542-source-1752253993440-target
+      source: '1752246275542'
+      sourceHandle: source
+      target: '1752253993440'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1752215937587-source-1752246241137-target
+      source: '1752215937587'
+      sourceHandle: source
+      target: '1752246241137'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: cv
+          max_length: 5
+          options: []
+          required: true
+          type: file
+          variable: cv
+        - label: job_name
+          max_length: 100
+          options: []
+          required: true
+          type: text-input
+          variable: job_name
+      height: 115
+      id: '1752215937587'
+      position:
+        x: 492.6354422087968
+        y: 262.47457464740637
+      positionAbsolute:
+        x: 492.6354422087968
+        y: 262.47457464740637
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 简历内容
+        type: document-extractor
+        variable_selector:
+        - '1752215937587'
+        - cv
+      height: 91
+      id: '1752246201417'
+      position:
+        x: 1242
+        y: 257.5
+      positionAbsolute:
+        x: 1242
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - N2WDJ1H2xDuNek4N85uBEdOOnRLcvCMp63kVoCWEt4Fhbk1AvLcbOb6xTlvot7PJ
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: BAAI/bge-reranker-v2-m3
+            provider: langgenius/siliconflow/siliconflow
+          score_threshold: 0.63
+          top_k: 1
+        query_variable_selector:
+        - '1752215937587'
+        - job_name
+        retrieval_mode: multiple
+        selected: false
+        title: 岗位JD
+        type: knowledge-retrieval
+      height: 91
+      id: '1752246241137'
+      position:
+        x: 845.7549100024826
+        y: 262.47457464740637
+      positionAbsolute:
+        x: 845.7549100024826
+        y: 262.47457464740637
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            enable_thinking: false
+            json_schema: "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"\
+              name\": {\n      \"type\": \"string\"\n    },\n    \"gender\": {\n \
+              \     \"type\": \"string\",\n      \"enum\": [\"男\", \"女\", \"其他\"]\n\
+              \    },\n    \"age\": {\n      \"type\": \"integer\"\n    },\n    \"\
+              education\": {\n      \"type\": \"string\",\n      \"enum\": [\"小学\"\
+              , \"初中\", \"高中\", \"中专\", \"大专\", \"本科\", \"硕士\", \"博士\", \"其他\"]\n\
+              \    },\n    \"workExperience\": {\n      \"type\": \"number\"\n   \
+              \ },\n    \"position\": {\n      \"type\": \"string\"\n    },\n    \"\
+              contact\": {\n      \"type\": \"string\"\n    },\n    \"expectedSalary\"\
+              : {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n  \
+              \  \"name\",\n    \"position\",\n    \"contact\"\n  ]\n}"
+            response_format: json_schema
+            temperature: 0
+          mode: chat
+          name: ernie-4.5-turbo-128k
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 626fdcd8-7949-4c87-b050-c1b8578333aa
+          role: system
+          text: /no think 你负责从{{#1752246201417.text#}}提取出候选人的姓名，性别，年龄，学历，工作年限，求职岗位，联系方式，期望薪资为一个JSON
+        selected: false
+        structured_output_enabled: true
+        title: 信息提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246268957'
+      position:
+        x: 1545
+        y: 257.5
+      positionAbsolute:
+        x: 1545
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752246241137'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v3
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: ce186999-a221-4d36-8786-c37c90d7d17d
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            针对简历:”{{#1752246201417.text#}}“中的项目经历、工作或实习经历所涉及到的技能，生成一份面试题，主要考核候选人在项目或工作中用到的技术是否熟练。面试题需结合具体岗位要求：“{{#context#}}”生成，确保问题具有针对性，能够深入考察候选人的技术能力和实际经验。以下是详细步骤：
+
+
+            1. **提取关键信息**：从简历中提取与技能、项目成果、技术栈相关的关键信息，重点关注候选人在项目中承担的角色、使用的技术、解决的问题以及取得的成果。
+
+            2. **结合岗位要求**：根据岗位描述（JD）中的职责和技术要求，筛选出与候选人经历最相关的部分，确保问题与岗位需求紧密相关。
+
+            3. **设计技术问题**：围绕候选人的技术栈和项目成果，设计开放式问题，重点考察其对技术的理解、优化能力以及实际应用经验。
+
+            4. **验证问题有效性**：确保问题能够真实反映候选人的技术水平，避免过于宽泛或脱离实际的问题。
+
+
+            输出时，首先先输出候选人姓名，请勿包含任何XML标签，仅提供清晰、简洁的面试问题。
+
+            </instruction>
+
+
+            <examples>
+
+            <example>
+
+            输入：
+
+            - 简历内容：负责电商平台的推荐系统优化，使用协同过滤和深度学习模型（如BERT）提升推荐准确率，使点击率提升20%，并成功应用于千万级用户规模的场景。
+
+            - 岗位要求：负责推荐算法的设计与优化，熟悉协同过滤和深度学习模型。
+
+
+            输出：
+
+            - 你在电商平台推荐系统中使用了协同过滤和BERT模型，能否详细说明你是如何结合这两种技术的？在提升点击率的过程中，BERT模型起到了哪些关键作用？
+
+            </example>
+
+
+            <example>
+
+            输入：
+
+            - 简历内容：主导开发分布式存储系统，采用Ceph和自定义的负载均衡算法，将系统吞吐量提升35%，并支持了日均10亿次请求的高并发场景。
+
+            - 岗位要求：熟悉分布式系统设计，有高并发场景优化经验。
+
+
+            输出：
+
+            - 你在分布式存储系统中使用了Ceph和自定义负载均衡算法，能否详细解释你的负载均衡算法设计思路？在高并发场景下，你是如何确保系统吞吐量提升的？
+
+            </example>
+
+
+
+            '
+        selected: false
+        title: 出题
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246275542'
+      position:
+        x: 1848
+        y: 257.5
+      positionAbsolute:
+        x: 1848
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1752246275542'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1752253993440'
+      position:
+        x: 2191.4876705357883
+        y: 262.47457464740637
+      positionAbsolute:
+        x: 2191.4876705357883
+        y: 262.47457464740637
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -250.84759259102088
+      y: 82.16516775362646
+      zoom: 0.8040888484979255
