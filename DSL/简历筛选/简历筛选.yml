@@ -1,0 +1,632 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 简历筛选
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: langgenius/tongyi:0.0.22@fe077b279c176f6534fd764f444388a625871f92ff71db76479e2513b5aa9487
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.16@d41b09aca46cdd3876f70b4c91d464c4588fc0bdc844ced6ee426283ead6ce8e
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1752215937587-source-1752215990013-target
+      source: '1752215937587'
+      sourceHandle: source
+      target: '1752215990013'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1752246201417-source-1752246268957-target
+      source: '1752246201417'
+      sourceHandle: source
+      target: '1752246268957'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1752246268957-source-1752246275542-target
+      source: '1752246268957'
+      sourceHandle: source
+      target: '1752246275542'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1752246275542-source-1752246301447-target
+      source: '1752246275542'
+      sourceHandle: source
+      target: '1752246301447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1752246301447-source-1752246308594-target
+      source: '1752246301447'
+      sourceHandle: source
+      target: '1752246308594'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1752246308594-source-1752246312461-target
+      source: '1752246308594'
+      sourceHandle: source
+      target: '1752246312461'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1752246312461-source-1752246319758-target
+      source: '1752246312461'
+      sourceHandle: source
+      target: '1752246319758'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1752246319758-source-1752253993440-target
+      source: '1752246319758'
+      sourceHandle: source
+      target: '1752253993440'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: document-extractor
+      id: 1752246241137-source-1752246201417-target
+      source: '1752246241137'
+      sourceHandle: source
+      target: '1752246201417'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1752215990013-source-1752255825516-target
+      source: '1752215990013'
+      sourceHandle: source
+      target: '1752255825516'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: knowledge-retrieval
+      id: 1752255825516-source-1752246241137-target
+      source: '1752255825516'
+      sourceHandle: source
+      target: '1752246241137'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: cv
+          max_length: 5
+          options: []
+          required: true
+          type: file
+          variable: cv
+        - label: job_name
+          max_length: 100
+          options: []
+          required: true
+          type: text-input
+          variable: job_name
+      height: 115
+      id: '1752215937587'
+      position:
+        x: 30
+        y: 257.5
+      positionAbsolute:
+        x: 30
+        y: 257.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - A7k17nmzmvqXRSlegUBYEAcHd/WzC0FfT0iEcklrm46HonPT4Kd8QWdG1mtMMCC4
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: BAAI/bge-reranker-v2-m3
+            provider: langgenius/siliconflow/siliconflow
+          score_threshold: 0.53
+          top_k: 1
+        query_variable_selector:
+        - '1752215937587'
+        - job_name
+        retrieval_mode: multiple
+        selected: false
+        title: 评分标准
+        type: knowledge-retrieval
+      height: 91
+      id: '1752215990013'
+      position:
+        x: 333
+        y: 257.5
+      positionAbsolute:
+        x: 333
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 简历内容
+        type: document-extractor
+        variable_selector:
+        - '1752215937587'
+        - cv
+      height: 91
+      id: '1752246201417'
+      position:
+        x: 1242
+        y: 257.5
+      positionAbsolute:
+        x: 1242
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - N2WDJ1H2xDuNek4N85uBEdOOnRLcvCMp63kVoCWEt4Fhbk1AvLcbOb6xTlvot7PJ
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: BAAI/bge-reranker-v2-m3
+            provider: langgenius/siliconflow/siliconflow
+          score_threshold: 0.63
+          top_k: 1
+        query_variable_selector:
+        - '1752215937587'
+        - job_name
+        retrieval_mode: multiple
+        selected: false
+        title: 岗位JD
+        type: knowledge-retrieval
+      height: 91
+      id: '1752246241137'
+      position:
+        x: 963.901057878385
+        y: 257.5
+      positionAbsolute:
+        x: 963.901057878385
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            enable_thinking: false
+            json_schema: "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"\
+              name\": {\n      \"type\": \"string\"\n    },\n    \"gender\": {\n \
+              \     \"type\": \"string\",\n      \"enum\": [\"男\", \"女\", \"其他\"]\n\
+              \    },\n    \"age\": {\n      \"type\": \"integer\"\n    },\n    \"\
+              education\": {\n      \"type\": \"string\",\n      \"enum\": [\"小学\"\
+              , \"初中\", \"高中\", \"中专\", \"大专\", \"本科\", \"硕士\", \"博士\", \"其他\"]\n\
+              \    },\n    \"workExperience\": {\n      \"type\": \"number\"\n   \
+              \ },\n    \"position\": {\n      \"type\": \"string\"\n    },\n    \"\
+              contact\": {\n      \"type\": \"string\"\n    },\n    \"expectedSalary\"\
+              : {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n  \
+              \  \"name\",\n    \"position\",\n    \"contact\"\n  ]\n}"
+            response_format: json_schema
+            temperature: 0
+          mode: chat
+          name: ernie-4.5-turbo-128k
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 626fdcd8-7949-4c87-b050-c1b8578333aa
+          role: system
+          text: /no think 你负责从{{#1752246201417.text#}}提取出候选人的姓名，性别，年龄，学历，工作年限，求职岗位，联系方式，期望薪资为一个JSON
+        selected: false
+        structured_output_enabled: true
+        title: 信息提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246268957'
+      position:
+        x: 1545
+        y: 257.5
+      positionAbsolute:
+        x: 1545
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752246241137'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v3
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: ce186999-a221-4d36-8786-c37c90d7d17d
+          role: system
+          text: "你是一个资深的HR，擅长简历分析和使用markdown格式输出分析内容\n根据简历内容：{{#1752246201417.text#}}和岗位要求：{{#context#}}，候选人个人信息：{{#1752246268957.text#}}针对候选人的特点，精炼出他的几个标签和亮点，对候选人的风险点详细分析，分析候选人与岗位的匹配程度，简历的真实程度，程度越高★越多，最多五颗★\n\
+            输出格式示例如下：\n<example>\n## 姓名：XXX  求职岗位：xxx  联系方式：xxxx  期望薪资：xxxx\n### 1.\
+            \ 亮点：\n- (1) 职业路径清晰，从销售专员到销售总监，逐步晋升，积累了全面的销售管理经验。\n- (2) 成功主导多个市场拓展项目（如电商渠道、品牌推广），均取得显著业绩（如销售额增长、品牌知名度提升\
+            \ ）。 \n- (3) 掌握数据分析工具，并将其应用于销售策略优化和团队管理，体现了较强的数据驱动能力。\n### 2. 风险点：\n-\
+            \ (1) **工作时间与项目时间不符**：在“上海家化联合股份有限公司”工作期间（2011.07 - 2014.12），简历中提到参与了“六神”花露水电商渠道拓展项目（2016.03\
+            \ - 2016.12），但此时间段已离开该公司，存在时间上的矛盾。 \n- (2) **晋升速度过快**：在短短三年内（2018.07 -\
+            \ 2021.12），从区域销售经理晋升为全面负责公司销售管理的总监，晋升速度较快，需考察其是否具备足够的综合能力和战略眼光。 \n- (3)\
+            \ **业绩数据异常**：在“纳爱斯集团”期间，带领团队完成年度销售目标1.2亿元，同比增长18% ，但未提及具体的销售策略和市场环境变化，业绩增长的原因不明确。\
+            \ \n- (4) **项目成果与市场实际情况不符**：在“好爸爸”洗衣液市场推广项目中，短期内实现品牌知名度提升20%、产品销量增长35%\
+            \ ，可能与实际市场竞争情况不符，需进一步验证数据真实性。 \n- (5) **证书与实际能力不符**：候选人拥有销售管理师、市场营销策划师、数据分析师等证书，但简历中未详细说明如何将这些技能应用到实际工作中，可能存在证书与能力脱节的情况。\
+            \ \n### 3. 人岗匹配度：★★★☆☆\n候选人的工作经验、技能证书和岗位要求基本匹配，但在晋升速度、业绩数据和项目成果的真实性上存在一定疑点，需进一步核实。\n\
+            ### 4. 简历真实度：★★☆☆☆\n简历内容整体逻辑性较强，但在工作时间与项目时间一致性、业绩数据真实性等方面存在较多疑点，需通过面试或背景调查进一步确认。\
+            \  \n<example>\n“#”符号后的内容严格按照markdown格式输出！！"
+        selected: false
+        title: 简历分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246275542'
+      position:
+        x: 1848
+        y: 257.5
+      positionAbsolute:
+        x: 1848
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1752246241137'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v3
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 1e16ba01-d3cb-48b2-9706-a641545b9312
+          role: system
+          text: "\n根据简历内容：{{#1752246201417.text#}}和岗位要求：{{#context#}}和个人信息：{{#1752246268957.text#}}以及评分标准：{{#1752255825516.output#}}给出<综合评分解读>，从1.\
+            \ 教育背景，2. 工作经验，3. 技术能力，4. 项目经验，5. 问题解决能力 ，6. 沟通与协作， 7. 文档能力 这几个维度进行分析；最后给出<面试建议>。不要输出其他内容。\n\
+            #符号后的内容严格按照markdown格式输出！！！\n\n<example>\n### 5. 综合评分解读：\n1. 教育背景：\n- 专业匹配： 3分（电气工程及其自动化）\n\
+            - 学历及年限符合： 2分（本科，7年工作经验）\n2. 工作经验：\n3. 技术能力：\n4. 项目经验：\n5. 问题解决能力：\n6.\
+            \ 沟通与协作：\n7. 文档能力：\n\n### 6. 面试建议：\n#### (1) 重点测评方向：\n- 核实工作时间与项目时间的一致性，尤其是“上海家化”项目的真实性。\n\
+            - 考察候选人晋升速度较快的原因，评估其是否具备足够的综合能力和战略眼光。 \n- 验证业绩数据的真实性，要求候选人提供具体的销售策略和市场环境变化说明。\
+            \ \n- 对比项目成果与市场实际情况，要求候选人提供更多的市场数据和推广策略细节。\n#### (2) 注意点：\n- 针对简历中存在的逻辑矛盾（如项目时间与工作经历不符），要求候选人详细解释其在项目中的具体角色和贡献。\
+            \ \n- 针对证书与实际能力不符的问题，要求候选人提供具体的案例和成果，评估其是否能够将理论知识与实际操作相结合。 \n- 关注候选人是否具备海外市场或跨境业务经验（如有加分项要求），以及其对数字化工具的熟练程度。\
+            \ \n<example>\n"
+        selected: false
+        title: 综合评分解读
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246301447'
+      position:
+        x: 2151
+        y: 257.5
+      positionAbsolute:
+        x: 2151
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import re\n\ndef main(text: str) -> str:\n    scores = re.findall(r'(\\\
+          d+)分', text)\n    total = sum(int(score) for score in scores)\n    return\
+          \ {'result': str(total)}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 计算分数
+        type: code
+        variables:
+        - value_selector:
+          - '1752246301447'
+          - text
+          variable: text
+      height: 53
+      id: '1752246308594'
+      position:
+        x: 2454
+        y: 257.5
+      positionAbsolute:
+        x: 2454
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0
+          mode: chat
+          name: ernie-4.5-turbo-128k
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: d78077af-d585-4cad-86aa-b5d44ddfef2c
+          role: system
+          text: '根据评价结果{{#1752246275542.text#}}和综合评分：{{#1752246308594.result#}}、{{#1752246268957.text#}}，汇总为一个<评价结果汇总表>，表头为姓名，性别，年龄，学历，工作年限，求职岗位，期望薪资，联系方式，综合评分，亮点总评，缺点总评。
+
+            请严格按照markdown表格格式输出！
+
+            示例输出：
+
+            <example>
+
+            ### 评价结果汇总表：
+
+            | 姓名 | 性别 | 年龄 | 学历 | 工作年限 | 求职岗位 | 期望薪资 | 联系方式 | 综合评分 | 亮点总评 | 缺点总评 |
+
+            | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
+            | ---- |
+
+            | 李明 | 男 | 30岁 | 本科 | 10年 | 销售总监 | 未提及 | 未提及 | 55分 | 有10年家用日化行业经验，从专员晋升到总监，熟悉销售流程、渠道运作和团队管理，有电商渠道拓展、品牌推广等成功项目经验
+            | 简历存在工作时间与项目时间矛盾、晋升速度过快、业绩数据和项目成果真实性存疑等问题 |
+
+            <example>
+
+            输出要求：#符号后的内容严格按照markdown格式输出，不要遗漏" | "," ---- " 符号！！！'
+        selected: false
+        title: 评价结果汇总表
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1752246312461'
+      position:
+        x: 2757
+        y: 257.5
+      positionAbsolute:
+        x: 2757
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(json_str: str) -> dict:\n    import json\n    data = json.loads(json_str)\n\
+          \    name = data.get('name', '')\n    return {'result': name}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 提取姓名
+        type: code
+        variables:
+        - value_selector:
+          - '1752246268957'
+          - text
+          variable: json_str
+      height: 53
+      id: '1752246319758'
+      position:
+        x: 3060
+        y: 257.5
+      positionAbsolute:
+        x: 3060
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1752246312461'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1752253993440'
+      position:
+        x: 3363
+        y: 257.5
+      positionAbsolute:
+        x: 3363
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ standards }}'
+        title: standards
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1752215990013'
+          - result
+          variable: standards
+      height: 53
+      id: '1752255825516'
+      position:
+        x: 636
+        y: 257.5
+      positionAbsolute:
+        x: 636
+        y: 257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -703.0652545186329
+      y: 205.3836615737227
+      zoom: 0.6093853943072877
