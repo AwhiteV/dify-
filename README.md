@@ -16,6 +16,8 @@
 
 
 我建立了一个微信交流群，大家可以在里面交流
-![3e821a2db272dd5bb56225dab0e8c1d](https://github.com/user-attachments/assets/8c6de841-f4b7-4e92-9898-3f022d52a4b3)
+<img width="1100" height="1537" alt="d6ff8f225aa578cf3518ebae386e518d" src="https://github.com/user-attachments/assets/da2bf675-c631-405a-ba69-cf2bb95ee0cd" />
+
+
 
 
